@@ -20,14 +20,19 @@ eqsent : '(' 'equal' term term ')' ;
 funterm : '(' FUNWORD argument+ ')' ;
 FUNWORD : LETTER WORDCHAR* 'Fn';
 
-relsent : ('(' IDENTIFIER argument+ ')') | ('(' variable argument+ ')')  ;
+relsent : ('(' (IDENTIFIER | NUMIDENTIFIER) argument+ ')') | ('(' variable argument+ ')')  ;
 
 argument : (sentence | term) ;
-term : (funterm | variable | string | number | FUNWORD | IDENTIFIER) ;
+term : (funterm | variable | string | number | FUNWORD | IDENTIFIER | NUMIDENTIFIER) ;
 IDENTIFIER : LETTER WORDCHAR* ;
 
 NUMBER : '-'? DIGIT+ ([.,] DIGIT+)? EXPONENT? ;
 number : NUMBER ;
+
+// Identifiers that start with one or more digits but contain at least one letter
+// (e.g. "5GNetwork", "3GPP", "4K"). Must be declared AFTER NUMBER so that pure
+// numeric literals (5, 5e3, 5.0) still win on equal-length matches.
+NUMIDENTIFIER : DIGIT WORDCHAR* LETTER WORDCHAR* ;
 
 WORDCHAR : (LETTER | DIGIT | '-' | '_') ;
 

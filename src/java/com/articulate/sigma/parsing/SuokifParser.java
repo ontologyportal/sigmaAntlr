@@ -18,9 +18,9 @@ public class SuokifParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, FUNWORD=12, IDENTIFIER=13, NUMBER=14, WORDCHAR=15, 
-		STRING=16, COMMENT=17, REGVAR=18, ROWVAR=19, EXPONENT=20, LETTER=21, DIGIT=22, 
-		WHITESPACE=23;
+		T__9=10, T__10=11, FUNWORD=12, IDENTIFIER=13, NUMBER=14, NUMIDENTIFIER=15, 
+		WORDCHAR=16, STRING=17, COMMENT=18, REGVAR=19, ROWVAR=20, EXPONENT=21, 
+		LETTER=22, DIGIT=23, WHITESPACE=24;
 	public static final int
 		RULE_file = 0, RULE_sentence = 1, RULE_quantsent = 2, RULE_exists = 3, 
 		RULE_forall = 4, RULE_logsent = 5, RULE_iff = 6, RULE_implies = 7, RULE_andsent = 8, 
@@ -46,8 +46,8 @@ public class SuokifParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			"FUNWORD", "IDENTIFIER", "NUMBER", "WORDCHAR", "STRING", "COMMENT", "REGVAR", 
-			"ROWVAR", "EXPONENT", "LETTER", "DIGIT", "WHITESPACE"
+			"FUNWORD", "IDENTIFIER", "NUMBER", "NUMIDENTIFIER", "WORDCHAR", "STRING", 
+			"COMMENT", "REGVAR", "ROWVAR", "EXPONENT", "LETTER", "DIGIT", "WHITESPACE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -982,7 +982,7 @@ public class SuokifParser extends Parser {
 				setState(151); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << NUMIDENTIFIER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
 			setState(153);
 			match(T__2);
 			}
@@ -1000,6 +1000,7 @@ public class SuokifParser extends Parser {
 
 	public static class RelsentContext extends ParserRuleContext {
 		public TerminalNode IDENTIFIER() { return getToken(SuokifParser.IDENTIFIER, 0); }
+		public TerminalNode NUMIDENTIFIER() { return getToken(SuokifParser.NUMIDENTIFIER, 0); }
 		public List<ArgumentContext> argument() {
 			return getRuleContexts(ArgumentContext.class);
 		}
@@ -1038,7 +1039,15 @@ public class SuokifParser extends Parser {
 				setState(155);
 				match(T__0);
 				setState(156);
-				match(IDENTIFIER);
+				_la = _input.LA(1);
+				if ( !(_la==IDENTIFIER || _la==NUMIDENTIFIER) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
 				setState(158); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
@@ -1052,7 +1061,7 @@ public class SuokifParser extends Parser {
 					setState(160); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << NUMIDENTIFIER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
 				setState(162);
 				match(T__2);
 				}
@@ -1079,7 +1088,7 @@ public class SuokifParser extends Parser {
 					setState(169); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << FUNWORD) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << NUMIDENTIFIER) | (1L << STRING) | (1L << REGVAR) | (1L << ROWVAR))) != 0) );
 				setState(171);
 				match(T__2);
 				}
@@ -1169,6 +1178,7 @@ public class SuokifParser extends Parser {
 		}
 		public TerminalNode FUNWORD() { return getToken(SuokifParser.FUNWORD, 0); }
 		public TerminalNode IDENTIFIER() { return getToken(SuokifParser.IDENTIFIER, 0); }
+		public TerminalNode NUMIDENTIFIER() { return getToken(SuokifParser.NUMIDENTIFIER, 0); }
 		public TermContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1189,7 +1199,7 @@ public class SuokifParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(185);
+			setState(186);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -1227,6 +1237,12 @@ public class SuokifParser extends Parser {
 				{
 				setState(184);
 				match(IDENTIFIER);
+				}
+				break;
+			case NUMIDENTIFIER:
+				{
+				setState(185);
+				match(NUMIDENTIFIER);
 				}
 				break;
 			default:
@@ -1267,7 +1283,7 @@ public class SuokifParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(187);
+			setState(188);
 			match(NUMBER);
 			}
 		}
@@ -1304,7 +1320,7 @@ public class SuokifParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(189);
+			setState(190);
 			match(STRING);
 			}
 		}
@@ -1341,7 +1357,7 @@ public class SuokifParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(191);
+			setState(192);
 			match(COMMENT);
 			}
 		}
@@ -1380,7 +1396,7 @@ public class SuokifParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(193);
+			setState(194);
 			_la = _input.LA(1);
 			if ( !(_la==REGVAR || _la==ROWVAR) ) {
 			_errHandler.recoverInline(this);
@@ -1404,7 +1420,7 @@ public class SuokifParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u00c6\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32\u00c7\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\3\2\3\2\6\2/\n\2\r\2\16\2\60"+
@@ -1417,52 +1433,52 @@ public class SuokifParser extends Parser {
 		"\3\16\3\16\3\16\3\16\3\17\3\17\3\17\6\17\u0098\n\17\r\17\16\17\u0099\3"+
 		"\17\3\17\3\20\3\20\3\20\6\20\u00a1\n\20\r\20\16\20\u00a2\3\20\3\20\3\20"+
 		"\3\20\3\20\6\20\u00aa\n\20\r\20\16\20\u00ab\3\20\3\20\5\20\u00b0\n\20"+
-		"\3\21\3\21\5\21\u00b4\n\21\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00bc\n"+
-		"\22\3\23\3\23\3\24\3\24\3\25\3\25\3\26\3\26\3\26\2\2\27\2\4\6\b\n\f\16"+
-		"\20\22\24\26\30\32\34\36 \"$&(*\2\3\3\2\24\25\2\u00cb\2.\3\2\2\2\48\3"+
-		"\2\2\2\6<\3\2\2\2\b>\3\2\2\2\nJ\3\2\2\2\f]\3\2\2\2\16_\3\2\2\2\20e\3\2"+
-		"\2\2\22k\3\2\2\2\24u\3\2\2\2\26\177\3\2\2\2\30\u0089\3\2\2\2\32\u008e"+
-		"\3\2\2\2\34\u0094\3\2\2\2\36\u00af\3\2\2\2 \u00b3\3\2\2\2\"\u00bb\3\2"+
-		"\2\2$\u00bd\3\2\2\2&\u00bf\3\2\2\2(\u00c1\3\2\2\2*\u00c3\3\2\2\2,/\5\4"+
-		"\3\2-/\5(\25\2.,\3\2\2\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2\2\2\60\61\3\2\2"+
-		"\2\61\62\3\2\2\2\62\63\7\2\2\3\63\3\3\2\2\2\649\5\36\20\2\659\5\f\7\2"+
-		"\669\5\6\4\2\679\5*\26\28\64\3\2\2\28\65\3\2\2\28\66\3\2\2\28\67\3\2\2"+
-		"\29\5\3\2\2\2:=\5\n\6\2;=\5\b\5\2<:\3\2\2\2<;\3\2\2\2=\7\3\2\2\2>?\7\3"+
-		"\2\2?@\7\4\2\2@B\7\3\2\2AC\5*\26\2BA\3\2\2\2CD\3\2\2\2DB\3\2\2\2DE\3\2"+
-		"\2\2EF\3\2\2\2FG\7\5\2\2GH\5\4\3\2HI\7\5\2\2I\t\3\2\2\2JK\7\3\2\2KL\7"+
-		"\6\2\2LN\7\3\2\2MO\5*\26\2NM\3\2\2\2OP\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QR\3"+
-		"\2\2\2RS\7\5\2\2ST\5\4\3\2TU\7\5\2\2U\13\3\2\2\2V^\5\30\r\2W^\5\22\n\2"+
-		"X^\5\24\13\2Y^\5\26\f\2Z^\5\20\t\2[^\5\16\b\2\\^\5\32\16\2]V\3\2\2\2]"+
-		"W\3\2\2\2]X\3\2\2\2]Y\3\2\2\2]Z\3\2\2\2][\3\2\2\2]\\\3\2\2\2^\r\3\2\2"+
-		"\2_`\7\3\2\2`a\7\7\2\2ab\5\4\3\2bc\5\4\3\2cd\7\5\2\2d\17\3\2\2\2ef\7\3"+
-		"\2\2fg\7\b\2\2gh\5\4\3\2hi\5\4\3\2ij\7\5\2\2j\21\3\2\2\2kl\7\3\2\2lm\7"+
-		"\t\2\2mo\5\4\3\2np\5\4\3\2on\3\2\2\2pq\3\2\2\2qo\3\2\2\2qr\3\2\2\2rs\3"+
-		"\2\2\2st\7\5\2\2t\23\3\2\2\2uv\7\3\2\2vw\7\n\2\2wy\5\4\3\2xz\5\4\3\2y"+
-		"x\3\2\2\2z{\3\2\2\2{y\3\2\2\2{|\3\2\2\2|}\3\2\2\2}~\7\5\2\2~\25\3\2\2"+
-		"\2\177\u0080\7\3\2\2\u0080\u0081\7\13\2\2\u0081\u0083\5\4\3\2\u0082\u0084"+
-		"\5\4\3\2\u0083\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085\u0083\3\2\2\2\u0085"+
-		"\u0086\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0088\7\5\2\2\u0088\27\3\2\2"+
-		"\2\u0089\u008a\7\3\2\2\u008a\u008b\7\f\2\2\u008b\u008c\5\4\3\2\u008c\u008d"+
-		"\7\5\2\2\u008d\31\3\2\2\2\u008e\u008f\7\3\2\2\u008f\u0090\7\r\2\2\u0090"+
-		"\u0091\5\"\22\2\u0091\u0092\5\"\22\2\u0092\u0093\7\5\2\2\u0093\33\3\2"+
-		"\2\2\u0094\u0095\7\3\2\2\u0095\u0097\7\16\2\2\u0096\u0098\5 \21\2\u0097"+
-		"\u0096\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u0097\3\2\2\2\u0099\u009a\3\2"+
-		"\2\2\u009a\u009b\3\2\2\2\u009b\u009c\7\5\2\2\u009c\35\3\2\2\2\u009d\u009e"+
-		"\7\3\2\2\u009e\u00a0\7\17\2\2\u009f\u00a1\5 \21\2\u00a0\u009f\3\2\2\2"+
-		"\u00a1\u00a2\3\2\2\2\u00a2\u00a0\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a4"+
-		"\3\2\2\2\u00a4\u00a5\7\5\2\2\u00a5\u00b0\3\2\2\2\u00a6\u00a7\7\3\2\2\u00a7"+
-		"\u00a9\5*\26\2\u00a8\u00aa\5 \21\2\u00a9\u00a8\3\2\2\2\u00aa\u00ab\3\2"+
-		"\2\2\u00ab\u00a9\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad"+
-		"\u00ae\7\5\2\2\u00ae\u00b0\3\2\2\2\u00af\u009d\3\2\2\2\u00af\u00a6\3\2"+
-		"\2\2\u00b0\37\3\2\2\2\u00b1\u00b4\5\4\3\2\u00b2\u00b4\5\"\22\2\u00b3\u00b1"+
-		"\3\2\2\2\u00b3\u00b2\3\2\2\2\u00b4!\3\2\2\2\u00b5\u00bc\5\34\17\2\u00b6"+
-		"\u00bc\5*\26\2\u00b7\u00bc\5&\24\2\u00b8\u00bc\5$\23\2\u00b9\u00bc\7\16"+
-		"\2\2\u00ba\u00bc\7\17\2\2\u00bb\u00b5\3\2\2\2\u00bb\u00b6\3\2\2\2\u00bb"+
-		"\u00b7\3\2\2\2\u00bb\u00b8\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00ba\3\2"+
-		"\2\2\u00bc#\3\2\2\2\u00bd\u00be\7\20\2\2\u00be%\3\2\2\2\u00bf\u00c0\7"+
-		"\22\2\2\u00c0\'\3\2\2\2\u00c1\u00c2\7\23\2\2\u00c2)\3\2\2\2\u00c3\u00c4"+
-		"\t\2\2\2\u00c4+\3\2\2\2\22.\608<DP]q{\u0085\u0099\u00a2\u00ab\u00af\u00b3"+
-		"\u00bb";
+		"\3\21\3\21\5\21\u00b4\n\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00bd"+
+		"\n\22\3\23\3\23\3\24\3\24\3\25\3\25\3\26\3\26\3\26\2\2\27\2\4\6\b\n\f"+
+		"\16\20\22\24\26\30\32\34\36 \"$&(*\2\4\4\2\17\17\21\21\3\2\25\26\2\u00cd"+
+		"\2.\3\2\2\2\48\3\2\2\2\6<\3\2\2\2\b>\3\2\2\2\nJ\3\2\2\2\f]\3\2\2\2\16"+
+		"_\3\2\2\2\20e\3\2\2\2\22k\3\2\2\2\24u\3\2\2\2\26\177\3\2\2\2\30\u0089"+
+		"\3\2\2\2\32\u008e\3\2\2\2\34\u0094\3\2\2\2\36\u00af\3\2\2\2 \u00b3\3\2"+
+		"\2\2\"\u00bc\3\2\2\2$\u00be\3\2\2\2&\u00c0\3\2\2\2(\u00c2\3\2\2\2*\u00c4"+
+		"\3\2\2\2,/\5\4\3\2-/\5(\25\2.,\3\2\2\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2\2"+
+		"\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\2\2\3\63\3\3\2\2\2\649\5\36\20"+
+		"\2\659\5\f\7\2\669\5\6\4\2\679\5*\26\28\64\3\2\2\28\65\3\2\2\28\66\3\2"+
+		"\2\28\67\3\2\2\29\5\3\2\2\2:=\5\n\6\2;=\5\b\5\2<:\3\2\2\2<;\3\2\2\2=\7"+
+		"\3\2\2\2>?\7\3\2\2?@\7\4\2\2@B\7\3\2\2AC\5*\26\2BA\3\2\2\2CD\3\2\2\2D"+
+		"B\3\2\2\2DE\3\2\2\2EF\3\2\2\2FG\7\5\2\2GH\5\4\3\2HI\7\5\2\2I\t\3\2\2\2"+
+		"JK\7\3\2\2KL\7\6\2\2LN\7\3\2\2MO\5*\26\2NM\3\2\2\2OP\3\2\2\2PN\3\2\2\2"+
+		"PQ\3\2\2\2QR\3\2\2\2RS\7\5\2\2ST\5\4\3\2TU\7\5\2\2U\13\3\2\2\2V^\5\30"+
+		"\r\2W^\5\22\n\2X^\5\24\13\2Y^\5\26\f\2Z^\5\20\t\2[^\5\16\b\2\\^\5\32\16"+
+		"\2]V\3\2\2\2]W\3\2\2\2]X\3\2\2\2]Y\3\2\2\2]Z\3\2\2\2][\3\2\2\2]\\\3\2"+
+		"\2\2^\r\3\2\2\2_`\7\3\2\2`a\7\7\2\2ab\5\4\3\2bc\5\4\3\2cd\7\5\2\2d\17"+
+		"\3\2\2\2ef\7\3\2\2fg\7\b\2\2gh\5\4\3\2hi\5\4\3\2ij\7\5\2\2j\21\3\2\2\2"+
+		"kl\7\3\2\2lm\7\t\2\2mo\5\4\3\2np\5\4\3\2on\3\2\2\2pq\3\2\2\2qo\3\2\2\2"+
+		"qr\3\2\2\2rs\3\2\2\2st\7\5\2\2t\23\3\2\2\2uv\7\3\2\2vw\7\n\2\2wy\5\4\3"+
+		"\2xz\5\4\3\2yx\3\2\2\2z{\3\2\2\2{y\3\2\2\2{|\3\2\2\2|}\3\2\2\2}~\7\5\2"+
+		"\2~\25\3\2\2\2\177\u0080\7\3\2\2\u0080\u0081\7\13\2\2\u0081\u0083\5\4"+
+		"\3\2\u0082\u0084\5\4\3\2\u0083\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085"+
+		"\u0083\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0088\7\5"+
+		"\2\2\u0088\27\3\2\2\2\u0089\u008a\7\3\2\2\u008a\u008b\7\f\2\2\u008b\u008c"+
+		"\5\4\3\2\u008c\u008d\7\5\2\2\u008d\31\3\2\2\2\u008e\u008f\7\3\2\2\u008f"+
+		"\u0090\7\r\2\2\u0090\u0091\5\"\22\2\u0091\u0092\5\"\22\2\u0092\u0093\7"+
+		"\5\2\2\u0093\33\3\2\2\2\u0094\u0095\7\3\2\2\u0095\u0097\7\16\2\2\u0096"+
+		"\u0098\5 \21\2\u0097\u0096\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u0097\3\2"+
+		"\2\2\u0099\u009a\3\2\2\2\u009a\u009b\3\2\2\2\u009b\u009c\7\5\2\2\u009c"+
+		"\35\3\2\2\2\u009d\u009e\7\3\2\2\u009e\u00a0\t\2\2\2\u009f\u00a1\5 \21"+
+		"\2\u00a0\u009f\3\2\2\2\u00a1\u00a2\3\2\2\2\u00a2\u00a0\3\2\2\2\u00a2\u00a3"+
+		"\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4\u00a5\7\5\2\2\u00a5\u00b0\3\2\2\2\u00a6"+
+		"\u00a7\7\3\2\2\u00a7\u00a9\5*\26\2\u00a8\u00aa\5 \21\2\u00a9\u00a8\3\2"+
+		"\2\2\u00aa\u00ab\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac"+
+		"\u00ad\3\2\2\2\u00ad\u00ae\7\5\2\2\u00ae\u00b0\3\2\2\2\u00af\u009d\3\2"+
+		"\2\2\u00af\u00a6\3\2\2\2\u00b0\37\3\2\2\2\u00b1\u00b4\5\4\3\2\u00b2\u00b4"+
+		"\5\"\22\2\u00b3\u00b1\3\2\2\2\u00b3\u00b2\3\2\2\2\u00b4!\3\2\2\2\u00b5"+
+		"\u00bd\5\34\17\2\u00b6\u00bd\5*\26\2\u00b7\u00bd\5&\24\2\u00b8\u00bd\5"+
+		"$\23\2\u00b9\u00bd\7\16\2\2\u00ba\u00bd\7\17\2\2\u00bb\u00bd\7\21\2\2"+
+		"\u00bc\u00b5\3\2\2\2\u00bc\u00b6\3\2\2\2\u00bc\u00b7\3\2\2\2\u00bc\u00b8"+
+		"\3\2\2\2\u00bc\u00b9\3\2\2\2\u00bc\u00ba\3\2\2\2\u00bc\u00bb\3\2\2\2\u00bd"+
+		"#\3\2\2\2\u00be\u00bf\7\20\2\2\u00bf%\3\2\2\2\u00c0\u00c1\7\23\2\2\u00c1"+
+		"\'\3\2\2\2\u00c2\u00c3\7\24\2\2\u00c3)\3\2\2\2\u00c4\u00c5\t\3\2\2\u00c5"+
+		"+\3\2\2\2\22.\608<DP]q{\u0085\u0099\u00a2\u00ab\u00af\u00b3\u00bc";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
